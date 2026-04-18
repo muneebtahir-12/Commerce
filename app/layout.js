@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";
@@ -34,7 +35,9 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full bg-background text-foreground">
         <div className="flex min-h-full flex-col">
-          <Navbar />
+          <Suspense>
+            <Navbar />
+          </Suspense>
           <main className="flex-1">{children}</main>
           <SiteFooter />
           <CartDrawer />

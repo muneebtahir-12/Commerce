@@ -150,7 +150,7 @@ export default function CheckoutPage() {
                 <input
                   value={formValues.fullName}
                   onChange={(event) => updateField("fullName", event.target.value)}
-                  className="h-11 w-full rounded-xl border border-border bg-background px-3 text-sm outline-none transition-colors focus:border-accent focus:ring-4 focus:ring-accent/10"
+                  className="h-11 w-full rounded-xl border border-border bg-background px-3 text-sm outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent/10"
                   placeholder="Enter your full name"
                 />
                 {errors.fullName && (
@@ -163,7 +163,7 @@ export default function CheckoutPage() {
                 <input
                   value={formValues.phone}
                   onChange={(event) => updateField("phone", event.target.value)}
-                  className="h-11 w-full rounded-xl border border-border bg-background px-3 text-sm outline-none transition-colors focus:border-accent focus:ring-4 focus:ring-accent/10"
+                  className="h-11 w-full rounded-xl border border-border bg-background px-3 text-sm outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent/10"
                   placeholder="+231..."
                 />
                 {errors.phone && <p className="text-xs text-danger">{errors.phone}</p>}
@@ -174,7 +174,7 @@ export default function CheckoutPage() {
                 <input
                   value={formValues.city}
                   onChange={(event) => updateField("city", event.target.value)}
-                  className="h-11 w-full rounded-xl border border-border bg-background px-3 text-sm outline-none transition-colors focus:border-accent focus:ring-4 focus:ring-accent/10"
+                  className="h-11 w-full rounded-xl border border-border bg-background px-3 text-sm outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent/10"
                   placeholder="Monrovia"
                 />
                 {errors.city && <p className="text-xs text-danger">{errors.city}</p>}
@@ -186,7 +186,7 @@ export default function CheckoutPage() {
                   value={formValues.address}
                   onChange={(event) => updateField("address", event.target.value)}
                   rows={3}
-                  className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none transition-colors focus:border-accent focus:ring-4 focus:ring-accent/10"
+                  className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent/10"
                   placeholder="Street, landmark, and delivery instructions"
                 />
                 {errors.address && (
@@ -200,7 +200,7 @@ export default function CheckoutPage() {
                   value={formValues.notes}
                   onChange={(event) => updateField("notes", event.target.value)}
                   rows={2}
-                  className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none transition-colors focus:border-accent focus:ring-4 focus:ring-accent/10"
+                  className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent/10"
                   placeholder="Any optional delivery notes"
                 />
               </label>

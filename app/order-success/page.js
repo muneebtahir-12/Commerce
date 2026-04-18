@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -8,7 +9,7 @@ import { CheckCircle2, ShieldCheck, Truck } from "lucide-react";
 import { useStore } from "@/hooks/use-store";
 import { formatCurrency } from "@/lib/currency";
 
-export default function OrderSuccessPage() {
+function OrderSuccessContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get("orderId");
 
@@ -46,7 +47,7 @@ export default function OrderSuccessPage() {
         const payload = await response.json();
 
         if (isMounted) {
-          setOrder(payload);
+          setFetchedOrder(payload);
         }
       } finally {
         if (isMounted) {
@@ -153,5 +154,13 @@ export default function OrderSuccessPage() {
         Continue Shopping
       </Link>
     </div>
+  );
+}
+
+export default function OrderSuccessPage() {
+  return (
+    <Suspense>
+      <OrderSuccessContent />
+    </Suspense>
   );
 }
