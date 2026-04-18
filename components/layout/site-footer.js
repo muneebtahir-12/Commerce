@@ -1,4 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import PromoBanner from "@/components/sections/promo-banner";
 import {
   CircleDollarSign,
   Heart,
@@ -8,6 +12,8 @@ import {
   Phone,
   RefreshCcw,
   Truck,
+  Plus,
+  Minus,
 } from "lucide-react";
 
 const serviceHighlights = [
@@ -64,9 +70,96 @@ const paymentMethods = [
   "easypaisa",
 ];
 
+const faqItems = [
+  {
+    id: "delivery",
+    question: "How does our delivery and pickup work?",
+    answer: "We offer fast and reliable delivery across Pakistan. You can choose standard delivery (1-3 business days) or express delivery options. We also offer pickup from our designated collection points for your convenience. Track your order in real-time through our app.",
+  },
+  {
+    id: "cost",
+    question: "How much does shipping cost?",
+    answer: "Shipping costs vary based on location and order value. Orders over a certain amount qualify for free shipping. Express delivery has a nominal charge. You'll see all shipping options with prices during checkout before confirming your purchase.",
+  },
+  {
+    id: "pricing",
+    question: "Will I pay the same price on our store as I would in physical shops?",
+    answer: "Our online prices are often more competitive than physical stores since we have lower overhead costs. We pass these savings to our customers. Additionally, we offer exclusive online deals and discounts that aren't available in-store.",
+  },
+  {
+    id: "outofstock",
+    question: "What happens if something is out of stock and I need special instructions?",
+    answer: "If an item is out of stock, you can join the waitlist or choose an alternative product. During checkout, there's a section for special instructions. Our customer service team will review your requests and contact you if we need clarification.",
+  },
+  {
+    id: "returns",
+    question: "What is your return policy?",
+    answer: "We offer hassle-free returns within 7 days of delivery. Items must be in original condition with all packaging. Simply initiate a return through your account, and we'll arrange pickup. Refunds are processed within 5-7 business days.",
+  },
+];
+
 export default function SiteFooter() {
+  const [openFAQ, setOpenFAQ] = useState({});
+
+  const toggleFAQ = (faqId) => {
+    setOpenFAQ((prev) => ({
+      ...prev,
+      [faqId]: !prev[faqId],
+    }));
+  };
+
   return (
-    <footer className="mt-14">
+    <>
+      {/* FAQ Section */}
+      <section className="mt-14  bg-white">
+        <div className="section-shell py-12">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
+            Common Questions
+          </h2>
+          <div className="max-w-4xl mx-auto space-y-4">
+            {faqItems.map((item) => (
+              <div
+                key={item.id}
+                className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
+              >
+                <button
+                  onClick={() => toggleFAQ(item.id)}
+                  className="w-full px-6 py-4 flex items-center justify-between bg-gray-50 hover:bg-gray-100 transition-colors text-left"
+                >
+                  <span className="text-lg font-semibold text-gray-900">
+                    {item.question}
+                  </span>
+                  {openFAQ[item.id] ? (
+                    <Minus size={24} className="text-gray-600 shrink-0" />
+                  ) : (
+                    <Plus size={24} className="text-gray-600 shrink-0" />
+                  )}
+                </button>
+                {openFAQ[item.id] && (
+                  <div className="px-6 py-4 bg-white border-t border-gray-200 animate-in fade-in slide-in-from-up-2 duration-300">
+                    <p className="text-gray-700 leading-relaxed">
+                      {item.answer}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Promo Banner */}
+      <PromoBanner
+        title="Weight Loss"
+        description="Shop nutritious and high fiber/protein foods to complement GLP-1 and other wellness focused lifestyles.*"
+        linkText="Start Shopping"
+        image="/images.jfif"
+        imageName="Fresh Produce Selection"
+      />
+
+      {/* Footer */}
+      <footer className="mt-14">
+      {/* Service Highlights */}
       <div className="border-y border-border bg-surface">
         <div className="section-shell grid grid-cols-2 gap-4 py-6 md:grid-cols-4 md:gap-6">
           {serviceHighlights.map((service) => (
@@ -199,5 +292,6 @@ export default function SiteFooter() {
         </div>
       </div>
     </footer>
+    </>
   );
 }
